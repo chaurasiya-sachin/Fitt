@@ -1,17 +1,22 @@
-import { useState } from 'react'
-import './App.css'
-import Home from './component/home/Home'
-import Navbar from './component/navbar/Navbar'
+import "./App.css";
+import BodyPartExercise from "./component/BodyPartExercise/BodyPartExercise";
+import ExcersiseDetailsCard from "./component/ExcersiseDetailsCard/ExcersiseDetailsCard";
+import Home from "./component/home/Home";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./component/Layout";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className='w-full h-7'>
-      <Navbar />
-      <Home />
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/bodypart/:name" element={<BodyPartExercise />} />
+          <Route path="/exercise/:id" element={<ExcersiseDetailsCard />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
